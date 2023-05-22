@@ -1,3 +1,7 @@
+using Loth.API.Configuration;
+using Loth.Data.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Adicionando suporte a Diversos arquivos de configuração por ambiente.
@@ -9,11 +13,18 @@ builder.Configuration
 
 // Add services to the container.
 
+
+builder.Services.AddDbContext<MeuDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.ResolveDependencies();
 
 var app = builder.Build();
 
