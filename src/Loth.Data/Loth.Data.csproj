@@ -23,5 +23,9 @@
 		<ProjectReference Include="..\Loth.Business\Loth.Business.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
+	</ItemGroup>
+
 
 </Project>
