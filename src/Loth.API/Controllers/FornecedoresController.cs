@@ -4,11 +4,13 @@ using Loth.Business.Intefaces;
 using Loth.Business.Models;
 using Loth.Business.Notificacoes;
 using Loth.Data.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Loth.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/fornecedores")]
     public class FornecedoresController : MainController
     {

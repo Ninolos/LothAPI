@@ -3,10 +3,12 @@ using Loth.API.Extensions;
 using Loth.API.ViewModels;
 using Loth.Business.Intefaces;
 using Loth.Business.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Loth.API.Controllers
 {
+    [Authorize]
     [Route("api/produtos")]
     public class ProdutosController : MainController
     {
@@ -25,6 +27,7 @@ namespace Loth.API.Controllers
             _mapper = mapper;            
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IEnumerable<ProdutoViewModel>> ObterTodos()
         {
