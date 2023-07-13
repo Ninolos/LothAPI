@@ -41,10 +41,8 @@ namespace Loth.API.Configuration
             {
                 app.UseCors("Development"); // Usar apenas nas demos => Configuração Ideal: Production
                 app.UseHsts();
-            }            
-
-            app.UseHttpsRedirection();
-
+            }        
+                      
             app.UseRouting();
 
             app.UseAuthentication();
