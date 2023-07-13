@@ -47,7 +47,7 @@ namespace Loth.API.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return CustomResponse(GerarJwt(registerUser.Email));
+                return CustomResponse(await GerarJwt(registerUser.Email));
             }
             foreach (var error in result.Errors)
             {
@@ -66,7 +66,7 @@ namespace Loth.API.Controllers
 
             if (result.Succeeded)
             {
-                return CustomResponse(GerarJwt(loginUser.Email));
+                return CustomResponse(await GerarJwt(loginUser.Email));
             }
             if (result.IsLockedOut)
             {
