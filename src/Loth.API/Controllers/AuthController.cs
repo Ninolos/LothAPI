@@ -1,7 +1,7 @@
 ﻿using Loth.API.Extensions;
 using Loth.API.ViewModels;
 using Loth.Business.Intefaces;
-using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -10,14 +10,15 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
 namespace Loth.API.Controllers
-{
-    [Microsoft.AspNetCore.Components.Route("api/conta")]
+{    
+    [Route("api/conta")]
     public class AuthController : MainController
     {
+
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
-        public AuthController(INotificador notificador, 
+        public AuthController(INotificador notificador,
                               SignInManager<IdentityUser> signInManager,
                               IOptions<AppSettings> appSettings,
                               UserManager<IdentityUser> userManager) : base(notificador)
@@ -63,7 +64,7 @@ namespace Loth.API.Controllers
             var result = await _signInManager.PasswordSignInAsync(loginUser.Email, loginUser.Password, false, true);
 
             if (result.Succeeded)
-            {               
+            {
                 return CustomResponse(GerarJwt());
             }
             if (result.IsLockedOut)
