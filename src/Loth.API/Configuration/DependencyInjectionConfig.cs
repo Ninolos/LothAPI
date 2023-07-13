@@ -1,4 +1,5 @@
-﻿using Loth.Business.Intefaces;
+﻿using Loth.API.Extensions;
+using Loth.Business.Intefaces;
 using Loth.Business.Notificacoes;
 using Loth.Business.Services;
 using Loth.Data.Context;
@@ -22,7 +23,7 @@ namespace Loth.API.Configuration
             services.AddScoped<IProdutoService, ProdutoService>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //services.AddScoped<IUser, AspNetUser>();
+            services.AddScoped<IUser, AspNetUser>();
 
             //services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 

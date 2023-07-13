@@ -20,7 +20,8 @@ namespace Loth.API.Controllers
         private readonly IMapper _mapper;
 
         public FornecedoresController(IFornecedorRepository fornecedorRepository, IFornecedorService fornecedorService, IMapper mapper, IEnderecoRepository enderecoRepository
-                                        ,INotificador notificador) : base(notificador)
+                                        ,INotificador notificador,
+                                        IUser user) : base(notificador, user)
         {
             _fornecedorRepository = fornecedorRepository;
             _mapper = mapper;
