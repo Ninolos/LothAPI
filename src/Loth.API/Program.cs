@@ -1,6 +1,7 @@
 using Loth.API.Configuration;
 using Loth.Data.Context;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,19 +27,20 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddApiConfig();
+
+builder.Services.AddSwaggerConfig();
+
 builder.Services.ResolveDependencies();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
 app.UseApiConfig(app.Environment);
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwaggerConfig(apiVersionDescriptionProvider);
 
 app.MapControllers();
 

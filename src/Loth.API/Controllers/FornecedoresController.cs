@@ -128,11 +128,13 @@ namespace Loth.API.Controllers
             return CustomResponse(enderecoViewModel);
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<FornecedorViewModel> ObterFornecedorProdutosEndereco(Guid id)
         {
            return _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorProdutosEndereco(id));
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<FornecedorViewModel> ObterFornecedorEndereco(Guid id)
         {
             return _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorEndereco(id));
