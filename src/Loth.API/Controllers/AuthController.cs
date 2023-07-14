@@ -11,8 +11,9 @@ using System.Security.Claims;
 using System.Text;
 
 namespace Loth.API.Controllers
-{    
-    [Route("api/conta")]
+{
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}")]
     public class AuthController : MainController
     {
 
