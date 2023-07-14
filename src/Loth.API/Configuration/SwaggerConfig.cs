@@ -131,6 +131,7 @@ namespace Loth.API.Configuration
         }
     }
 
+    //restringe acesso ao swagger
     public class SwaggerAuthorizedMiddleware
     {
         private readonly RequestDelegate _next;
