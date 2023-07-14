@@ -14,6 +14,7 @@ namespace Loth.API.Configuration
             {
                 c.OperationFilter<SwaggerDefaultValues>();
 
+                //configura para swagger usar o JWT
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "Insira o token JWT desta maneira: Bearer {seu token}",
