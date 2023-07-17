@@ -11,6 +11,7 @@ namespace Loth.API.Configuration
         {
             services.AddControllers();
 
+            services.AddSwaggerGen();
             services.AddApiVersioning(options => 
             {
                 options.AssumeDefaultVersionWhenUnspecified = true;

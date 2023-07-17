@@ -13,35 +13,34 @@ builder.Configuration
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true, true)
     .AddEnvironmentVariables();
 
-// Add services to the container.
+// ConfigureServices
 
 builder.Services.AddDbContext<MeuDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddIdentityConfig(builder.Configuration);
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddApiConfig();
 
 builder.Services.AddSwaggerConfig();
 
+//builder.Services.AddLoggingConfig(builder.Configuration);
+
 builder.Services.ResolveDependencies();
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-
 var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
+// Configure
 
 app.UseApiConfig(app.Environment);
 
 app.UseSwaggerConfig(apiVersionDescriptionProvider);
 
-app.MapControllers();
+//app.UseLoggingConfiguration();
 
 app.Run();
